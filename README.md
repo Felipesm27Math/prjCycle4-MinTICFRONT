@@ -1,3 +1,14 @@
+# prjCycle4-MinTIC
+
+# Team
+
+1. Carolain Abanis Perez - carolainabanis@gmail.com -> Analista
+2. Ana Eiraldi - geiraldi@gmail.com -> Administradora BD
+3. Felipe Supelano - felipesm27@gmail.com -> Scrum Master
+4. Nelson Apache - molina123apache@gmail.com -> Desarrollador
+5. Andrea Jaimes - andreacamilajaimes@gmail.com -> Product Owner 
+6. Sara Paola Cruz Muriel saritacz822@gmail.com -> Desarrolladora
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
