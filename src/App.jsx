@@ -4,6 +4,8 @@ import {ApolloProvider, ApolloClient, InMemoryCache} from '@apollo/client';
 import { UserContext } from 'context/userContext';
 import Index from "pages/Index";
 import IndexUsuarios from "pages/usuarios/Index";
+import IndexAvances from 'pages/avances/Index';
+import LayoutAdmin from 'layouts/LayoutAdmin';
 import  'styles/globals.css';
 import 'styles/tabla.css'
 
@@ -26,6 +28,10 @@ function App() {
               <Routes>
                   <Route path="/" element={<Index/>}/>
                   <Route path="/usuarios" element={<IndexUsuarios/>}/>
+                  <Route path="/avances" element={<LayoutAdmin/>}>
+                    <Route path="" element={<IndexAvances/>}/>
+                  </Route>
+
               </Routes>
           </BrowserRouter>
       </UserContext.Provider>
