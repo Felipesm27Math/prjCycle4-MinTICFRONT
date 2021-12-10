@@ -16,7 +16,7 @@ import 'styles/tabla.css';
 
 
 const httpLink = createHttpLink({
-  uri: "https://back-nafc-code.herokuapp.com/graphql",
+  uri: "http://localhost:4000/",
 });
 
 const authLink = setContext((_, { headers }) => {
