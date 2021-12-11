@@ -1,13 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import 'styles/globals.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import Index from "pages/Index";
+import IndexUsuarios from "pages/usuarios/Index";
+import IndexAvances from 'pages/avances/Index';
+
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <Routes>
+       <Route path="/" element={<App/>}>
+        <Route index element={<Index/>}/>
+        <Route path="/usuarios" element={<IndexUsuarios/>}/>  
+        <Route path="/avances" element={<IndexAvances/>}/>
+       </Route>
+    </Routes>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 

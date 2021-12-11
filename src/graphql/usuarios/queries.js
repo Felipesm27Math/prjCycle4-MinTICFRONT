@@ -13,15 +13,4 @@ query Usuarios {
 }
 `;
 
-const GET_AVANCES = gql `
-query Avances {
-  Avances {
-    _id
-    fecha
-    descripcion
-    observaciones
-  }
-}
-`;
-
-export {GET_USUARIOS, GET_AVANCES}
+export {GET_USUARIOS}

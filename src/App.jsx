@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import {Outlet} from "react-router-dom"
 import {ApolloProvider, ApolloClient, InMemoryCache} from '@apollo/client';
 import { UserContext } from 'context/userContext';
-import Index from "pages/Index";
-import IndexUsuarios from "pages/usuarios/Index";
-import IndexAvances from 'pages/avances/Index';
 import LayoutAdmin from 'layouts/LayoutAdmin';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import  'styles/globals.css';
-import 'styles/tabla.css'
+import 'styles/tabla.css';
+
 
 // const httpLink = createHttpLink({
 //   uri:"https://back-nafc-code.herokuapp.com/graphql"
@@ -18,22 +18,19 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-function App() {
 
+function App() {
   const [userData, setUserData] = useState({});
   return (
     <ApolloProvider client={client}>
       <UserContext.Provider value={{userData, setUserData}}>
-        <BrowserRouter>
-              <Routes>
-                  <Route path="/" element={<Index/>}/>
-                  <Route path="/usuarios" element={<IndexUsuarios/>}/>
-                  <Route path="/avances" element={<LayoutAdmin/>}>
-                    <Route path="" element={<IndexAvances/>}/>
-                  </Route>
-
-              </Routes>
-          </BrowserRouter>
+        <>
+          <LayoutAdmin/>
+          <div>
+            <Outlet/>
+          </div>
+        </>
+          <ToastContainer/>
       </UserContext.Provider>
     </ApolloProvider>
   );
