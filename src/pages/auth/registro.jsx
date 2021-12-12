@@ -43,7 +43,7 @@ const RegistrarUsuario = () => {
                     <Input label='Correo' name='correo' type='email' required/>
                     <Input label='Documento' name='identificacion' type='text' required/>
                     <DropDown label='Rol' name='rol' required={true} options={Enum_rol}/>
-                    <Input label='Contrasena' name='password' type='password' required/>
+                    <Input label='Contraseña' name='password' type='password' required/>
                 </div>
                 <ButtonLoading 
                     disabled={Object.keys(formData).length===0}
@@ -53,7 +53,7 @@ const RegistrarUsuario = () => {
             </form>
             <span>¿Ya tienes una cuenta?</span>
             <Link to='/auth/login'>
-                <span className='text-blue-700'>Iniciar sesion</span>
+                <span className='text-blue-900'>Iniciar sesion</span>
             </Link>
         </div>
     );
