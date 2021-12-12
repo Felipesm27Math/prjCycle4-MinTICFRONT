@@ -7,10 +7,12 @@ import useFormData from 'hooks/useFormData';
 import {Link} from 'react-router-dom';
 import {useMutation} from '@apollo/client';
 import {REGISTRO} from "graphql/auth/mutations";
+import { useNavigate } from 'react-router';
 
 
 const RegistrarUsuario = () => {
-
+    
+    let navigate = useNavigate();
     const {form,formData,updateFormData} = useFormData();
 
     const [registro,{data:dataMutation, loading:loadingMutation, error:errorMutation}] = useMutation(REGISTRO);
@@ -23,6 +25,12 @@ const RegistrarUsuario = () => {
 
     useEffect(() =>{
         console.log("data mutation",dataMutation);
+        if(dataMutation){
+            if(dataMutation.registro.token){
+                localStorage.setItem('token',dataMutation.registro.token);
+                navigate('/');
+            }
+        }
     },[dataMutation]);
 
 

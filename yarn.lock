@@ -9489,6 +9489,13 @@ react-toastify@^8.1.0:
   dependencies:
     clsx "^1.1.1"
 
+react-use-navigate@^0.1.1:
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/react-use-navigate/-/react-use-navigate-0.1.1.tgz#5657642832c33afbefb595532252d6ed81af1c67"
+  integrity sha512-FjSKKHmTy0DA0KBGsNlN97HVha3L3WCTRfXG2lucrgWjQGzqZZTKQ2FdCOZgE+rkBdBTAM6PLEV9MfUdm6MHlQ==
+  dependencies:
+    minimatch "^3.0.4"
+
 react@^17.0.2:
   version "17.0.2"
   resolved "https://registry.npmjs.org/react/-/react-17.0.2.tgz"

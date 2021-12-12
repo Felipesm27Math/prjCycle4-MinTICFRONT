@@ -14,7 +14,10 @@ const REGISTRO = gql`
       identificacion: $identificacion
       password: $password
       rol: $rol
-    )
+    ){
+      token
+      error
+    }
   }
 `;
 

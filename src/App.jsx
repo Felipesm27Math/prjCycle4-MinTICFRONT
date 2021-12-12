@@ -3,15 +3,14 @@ import {ApolloProvider, ApolloClient, InMemoryCache} from '@apollo/client';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import { UserContext } from 'context/userContext';
 import LayoutAdmin from 'layouts/LayoutAdmin';
-import 'react-toastify/dist/ReactToastify.css';
-import  'styles/globals.css';
-import 'styles/tabla.css';
 import LayoutUsers from 'layouts/LayoutUsers';
 import Index from "pages/Index";
 import IndexUsuarios from "pages/usuarios/Index";
 import IndexAvances from 'pages/avances/Index';
 import RegistrarUsuario from 'pages/auth/registro';
 import IniciarSesion from 'pages/auth/login';
+import  'styles/globals.css';
+import 'styles/tabla.css';
 
 
 // const httpLink = createHttpLink({
