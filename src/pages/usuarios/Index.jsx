@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import React, {useEffect} from 'react'
 import {useQuery} from '@apollo/client';
 import { GET_USUARIOS } from 'graphql/usuarios/queries';
@@ -51,4 +49,3 @@ const IndexUsuarios = () => {
 };
 
 export default IndexUsuarios
->>>>>>> features

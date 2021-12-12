@@ -13,7 +13,7 @@ const DropDown = ({ label, name, defaultValue = '', required, options }) => {
       <select
         required={required}
         name={name}
-        className='input border h-8 rounded border-double outline-double border-blue-900 bg-gray-100'
+        className='input border h-10 rounded border-double outline-double border-blue-900 bg-gray-100'
         value={selectedValue}
         onChange={(e) => setSelectedValue(e.target.value)}
       >
