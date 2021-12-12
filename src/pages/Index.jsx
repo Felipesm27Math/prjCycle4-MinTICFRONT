@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Index = () => {
+<<<<<<< HEAD
   return (
     <div>
       <div className='bg-green-300 h-96'>Index page</div>
@@ -10,5 +11,13 @@ const Index = () => {
     </div>
   );
 };
+=======
+    return (
+        <div>
+            Home
+        </div>
+    )
+}
+>>>>>>> features
 
 export default Index;

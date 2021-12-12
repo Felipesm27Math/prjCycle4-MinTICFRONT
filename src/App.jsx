@@ -1,12 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React, { useState } from 'react';
+import {ApolloProvider, ApolloClient, InMemoryCache} from '@apollo/client';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import { UserContext } from 'context/userContext';
-import { ApolloProvider, ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
-import AuthLayout from 'layouts/AuthLayout';
-import Register from 'pages/auth/register';
-import Login from 'pages/auth/login';
-import { AuthContext } from 'context/authContext';
+import LayoutAdmin from 'layouts/LayoutAdmin';
+import LayoutUsers from 'layouts/LayoutUsers';
+import Index from "pages/Index";
+import IndexUsuarios from "pages/usuarios/Index";
+import IndexAvances from 'pages/avances/Index';
+import RegistrarUsuario from 'pages/auth/registro';
+import IniciarSesion from 'pages/auth/login';
+import  'styles/globals.css';
+import 'styles/tabla.css';
+
 
 import jwt_decode from 'jwt-decode';
 import 'styles/globals.css';
@@ -32,6 +37,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const client = new ApolloClient({
+  uri:"http://localhost:4000/graphql",
   cache: new InMemoryCache(),
   link: authLink.concat(httpLink),
 });
@@ -65,21 +71,25 @@ function App() {
 
   return (
     <ApolloProvider client={client}>
-      <AuthContext.Provider value={{ authToken, setAuthToken, setToken }}>
-        <UserContext.Provider value={{ userData, setUserData }}>
-          <BrowserRouter>
-            <Routes>
-          
-              <Route path='/auth' element={<AuthLayout />}>
-                <Route path='register' element={<Register />} />
-                <Route path='login' element={<Login />} />
-              </Route>
-            </Routes>
-          </BrowserRouter>
-        </UserContext.Provider>
-      </AuthContext.Provider>
+      <UserContext.Provider value={{userData, setUserData}}>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<LayoutAdmin/>}>
+              <Route path='' element={<Index/>}/>
+              <Route path="/usuarios" element={<IndexUsuarios/>}/>  
+              <Route path="/avances" element={<IndexAvances/>}/>
+            </Route>
+            <Route path='/auth' element={<LayoutUsers/>}>
+              <Route path='registro' element={<RegistrarUsuario/>}/>
+              <Route path='login'element={<IniciarSesion/>}/>
+            </Route>
+          </Routes>
+        </BrowserRouter>
+      </UserContext.Provider>
     </ApolloProvider>
   );
 }
 
+
 export default App;
+
