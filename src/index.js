@@ -2,22 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import Index from "pages/Index";
-import IndexUsuarios from "pages/usuarios/Index";
-import IndexAvances from 'pages/avances/Index';
+
+
 
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Routes>
-       <Route path="/" element={<App/>}>
-        <Route index element={<Index/>}/>
-        <Route path="/usuarios" element={<IndexUsuarios/>}/>  
-        <Route path="/avances" element={<IndexAvances/>}/>
-       </Route>
-    </Routes>
-  </BrowserRouter>,
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
   document.getElementById('root')
 );
 
