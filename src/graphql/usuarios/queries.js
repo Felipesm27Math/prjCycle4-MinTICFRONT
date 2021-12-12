@@ -1,16 +1,17 @@
-import { gql } from '@apollo/client';
 
-const GET_USUARIOS = gql`
-  query Query($filtro: FiltroUsuarios) {
-    Usuarios(filtro: $filtro) {
-      _id
-      nombre      
-      correo
-      estado
-      identificacion
-      rol
-    }
+import {gql} from '@apollo/client';
+
+const GET_USUARIOS = gql `
+query Usuarios {
+  Usuarios {
+    _id
+    nombre
+    identificacion
+    correo
+    estado
+    rol
   }
+}
 `;
 
 export {GET_USUARIOS}
