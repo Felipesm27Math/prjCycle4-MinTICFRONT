@@ -29,7 +29,8 @@
 .user,
 .prj,
 .ins,
-.advan {
+.advan,
+.logout {
     color:rgb(249, 250, 251);
     font-size: 20px;
     padding-left: 14px;
@@ -63,6 +64,7 @@
     font-size:22px
 }
 
+
 .butt-menu{
     display:none;
 }
@@ -92,7 +94,8 @@
     .user,
     .prj,
     .ins,
-    .advan {
+    .advan,
+    .logout {
         color:rgb(249, 250, 251);
         text-align:center;
         padding:32px;

@@ -30,13 +30,13 @@ const LOGIN = gql`
   }
 `;
 
-const VALIDAR_TOKEN = gql`
-  mutation ValiarToken {
-    valiarToken {
+const REFRESCAR_TOKEN = gql`
+  mutation RefrescarToken {
+    refrescarToken {
       token
       error
-    }
+    } 
   }
 `;
 
-export { REGISTRO, LOGIN, VALIDAR_TOKEN };
+export { REGISTRO, LOGIN, REFRESCAR_TOKEN };
