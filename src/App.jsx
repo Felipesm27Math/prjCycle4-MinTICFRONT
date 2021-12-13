@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {ApolloProvider, ApolloClient, InMemoryCache, createHttpLink} from '@apollo/client';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import { setContext } from '@apollo/client/link/context';
@@ -10,9 +10,11 @@ import IndexUsuarios from "pages/usuarios/Index";
 import IndexAvances from 'pages/avances/Index';
 import RegistrarUsuario from 'pages/auth/registro';
 import IniciarSesion from 'pages/auth/login';
+import { AuthContext } from 'context/authContext';
+import jwt_decode from "jwt-decode";
 import  'styles/globals.css';
 import 'styles/tabla.css';
-import { AuthContext } from 'context/authContext';
+
 
 const httpLink = createHttpLink({
   uri: 'http://localhost:4000/graphql',
@@ -36,6 +38,8 @@ const client = new ApolloClient({
   link: authLink.concat(httpLink),
 });
 
+
+
 function App() {
   const [userData, setUserData] = useState({});
   const [authToken,setAuthToken] = useState('');
@@ -48,6 +52,20 @@ function App() {
       localStorage.removeItem('token');
     }
   };
+
+  useEffect(() => {
+    if (authToken) {
+      const decoded = jwt_decode(authToken);
+      console.log('decoded token', decoded);
+      setUserData({
+        _id: decoded._id,
+        nombre: decoded.nombre,
+        identificacion: decoded.identificacion,
+        correo: decoded.correo,
+        rol: decoded.rol,
+      });
+    }
+  }, [authToken]);
 
   return (
     <ApolloProvider client={client}>
