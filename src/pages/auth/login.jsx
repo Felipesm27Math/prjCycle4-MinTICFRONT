@@ -1,18 +1,36 @@
-import React from 'react'
+import React, {useEffect}from 'react'
 import Input from 'components/Input';
 import ButtonLoading from 'components/Button'
 import useFormData from 'hooks/useFormData';
 import {Link} from 'react-router-dom';
 import { useMutation } from '@apollo/client'; 
-
+import {LOGIN} from 'graphql/auth/mutations';
+import { useNavigate } from 'react-router';
+import { useAuth } from 'context/authContext';
 
 const IniciarSesion = () => {
 
+    const {setToken} = useAuth();
     const {form,formData,updateFormData} = useFormData();
+    let navigate = useNavigate();
+    const [login,{data:dataMutation, loading:loadingMutation, error:errorMutation}] = useMutation(LOGIN);
 
     const submitForm = (e) => {
         e.preventDefault();
+        login({
+            variables:formData,
+        });
     };
+
+    useEffect(() =>{
+        console.log("data mutation",dataMutation);
+        if(dataMutation){
+            if(dataMutation.login.token){
+                setToken(dataMutation.login.token);
+                navigate('/');
+            }
+        }
+    },[dataMutation,setToken,navigate]);
 
     return (
         <div className='flex flex-col items-center justify-center w-full h-full p-10'>
@@ -22,7 +40,7 @@ const IniciarSesion = () => {
                 <Input name='password' type='password' label='Contraseña' required={true} />
                 <ButtonLoading
                 disabled={Object.keys(formData).length === 0}
-                loading={false}
+                loading={loadingMutation}
                 text='Iniciar Sesión'
                 />
             </form>
