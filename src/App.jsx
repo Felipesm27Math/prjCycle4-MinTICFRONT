@@ -9,8 +9,10 @@ import IndexUsuarios from "pages/usuarios/Index";
 import IndexAvances from 'pages/avances/Index';
 import RegistrarUsuario from 'pages/auth/registro';
 import IniciarSesion from 'pages/auth/login';
+import IndexInscripciones from 'pages/inscripciones/Index';
 import  'styles/globals.css';
 import 'styles/tabla.css';
+import "styles/homeStyles.css";
 
 const client = new ApolloClient({
   uri:"http://localhost:4000/graphql",
@@ -26,13 +28,15 @@ function App() {
           <Routes>
             <Route path="/" element={<LayoutAdmin/>}>
               <Route path='' element={<Index/>}/>
-              <Route path="/usuarios" element={<IndexUsuarios/>}/>  
+              <Route path="/usuarios" element={<IndexUsuarios/>}/>
               <Route path="/avances" element={<IndexAvances/>}/>
+              <Route path="/inscripciones" element={<IndexInscripciones/>}/>
             </Route>
-            <Route path='/auth' element={<LayoutUsers/>}>
+            <Route path='/nafc' element={<LayoutUsers/>}/>
+            
+           
               <Route path='registro' element={<RegistrarUsuario/>}/>
               <Route path='login'element={<IniciarSesion/>}/>
-            </Route>
           </Routes>
         </BrowserRouter>
       </UserContext.Provider>

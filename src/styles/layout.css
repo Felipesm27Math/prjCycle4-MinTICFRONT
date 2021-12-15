@@ -29,7 +29,9 @@
 .user,
 .prj,
 .ins,
-.advan {
+.advan
+.registro,
+.login {
     color:rgb(249, 250, 251);
     font-size: 20px;
     padding-left: 14px;
@@ -37,7 +39,23 @@
     margin-right: 10px;
     cursor:pointer;
 }
-
+.registro {
+    color:rgb(249, 250, 251);
+    font-size: 20px;
+    padding-left: 14px;
+    padding-right: 14px;
+    margin-right: 10px;
+    cursor:pointer;
+}
+.advan
+ {
+    color:rgb(249, 250, 251);
+    font-size: 20px;
+    padding-left: 14px;
+    padding-right: 14px;
+    margin-right: 10px;
+    cursor:pointer;
+ }
 .home:hover {
     color:rgb(208, 131, 211);
     font-size:22px
@@ -59,6 +77,14 @@
 }
 
 .advan:hover {
+    color:rgb(208, 131, 211);
+    font-size:22px
+}
+.registro:hover {
+    color:rgb(208, 131, 211);
+    font-size:22px
+}
+.login:hover {
     color:rgb(208, 131, 211);
     font-size:22px
 }
@@ -92,7 +118,9 @@
     .user,
     .prj,
     .ins,
-    .advan {
+    .advan,
+    .registro,
+    .login {
         color:rgb(249, 250, 251);
         text-align:center;
         padding:32px;
