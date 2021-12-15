@@ -12,8 +12,10 @@ import RegistrarUsuario from 'pages/auth/registro';
 import IniciarSesion from 'pages/auth/login';
 import { AuthContext } from 'context/authContext';
 import jwt_decode from "jwt-decode";
+import IndexInscripciones from 'pages/inscripciones/Index';
 import  'styles/globals.css';
 import 'styles/tabla.css';
+import "styles/homeStyles.css";
 
 
 const httpLink = createHttpLink({
@@ -78,7 +80,7 @@ function App() {
                 <Route path="/usuarios" element={<IndexUsuarios/>}/>  
                 <Route path="/avances" element={<IndexAvances/>}/>
               </Route>
-              <Route path='/auth' element={<LayoutUsers/>}>
+              <Route path='/nafc' element={<LayoutUsers/>}>
                 <Route path='registro' element={<RegistrarUsuario/>}/>
                 <Route path='login'element={<IniciarSesion/>}/>
               </Route>
