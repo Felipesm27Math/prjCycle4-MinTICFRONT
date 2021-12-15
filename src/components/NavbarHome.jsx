@@ -1,7 +1,5 @@
 import React, {useState}from 'react'
 import { Link } from 'react-router-dom'
-import { ToastContainer } from 'react-toastify';
-import {Outlet} from "react-router-dom"
 import 'styles/layout.css';
 
 

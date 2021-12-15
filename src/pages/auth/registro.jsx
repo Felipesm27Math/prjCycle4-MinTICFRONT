@@ -54,7 +54,7 @@ const RegistrarUsuario = () => {
                 />
             </form>
             <span>¿Ya tienes una cuenta?</span>
-            <Link to='/auth/login'>
+            <Link to='/login'>
                 <span className='text-blue-900'>Iniciar sesion</span>
             </Link>
         </div>

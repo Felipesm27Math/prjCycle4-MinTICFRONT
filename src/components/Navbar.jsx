@@ -11,21 +11,21 @@ const Navbar = () => {
 
     return (   
         <nav className="navbar">
-                    <div className="logo"><Link to='/'>NAFC</Link></div>
+                    <div className="logo"><Link to='/nafc'>NAFC</Link></div>
                 <ul className={Menu?"nav-menu":"nav-uno"} onClick={()=>{setMenu(false)}}>
-                    <Link to='/' className="home">
+                    <Link to='/nafc' className="home">
                         <li>Home</li>
                     </Link>
-                    <Link to='/usuarios' className="user">
+                    <Link to='/nafc/usuarios' className="user">
                         <li>Usuarios</li>
                     </Link>
-                    <Link to='/proyectos' className="prj">
+                    <Link to='/nafc/proyectos' className="prj">
                         <li>Proyectos</li>
                     </Link>
-                    <Link to='/inscripciones' className="ins">
+                    <Link to='/nafc/inscripciones' className="ins">
                         <li>Inscripciones</li>
                     </Link>
-                    <Link to='/avances' className="advan">
+                    <Link to='/nafc/avances' className="advan">
                         <li>Avances</li>
                     </Link>
                     <Logout/>
@@ -45,7 +45,7 @@ const Logout = () => {
     };
     return (
       <li onClick={() => deleteToken()} className="logout flex items-center justify-center">
-        <NavLink to='/auth/login' className=' text-2xl text-white hover:text-pink-300 hover:text-4xl'>
+        <NavLink to='/login' className=' text-2xl text-white hover:text-pink-300 hover:text-4xl'>
           <div className='flex items-center'>
             <i className='fas fa-sign-out-alt' />
             <span className='text-sm ml-2'>Cerrar Sesión</span>

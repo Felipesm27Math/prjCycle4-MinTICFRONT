@@ -5,7 +5,6 @@ import { setContext } from '@apollo/client/link/context';
 import { UserContext } from 'context/userContext';
 import LayoutAdmin from 'layouts/LayoutAdmin';
 import LayoutUsers from 'layouts/LayoutUsers';
-import Index from "pages/Index";
 import IndexUsuarios from "pages/usuarios/Index";
 import IndexAvances from 'pages/avances/Index';
 import RegistrarUsuario from 'pages/auth/registro';
@@ -13,6 +12,7 @@ import IniciarSesion from 'pages/auth/login';
 import { AuthContext } from 'context/authContext';
 import jwt_decode from "jwt-decode";
 import IndexInscripciones from 'pages/inscripciones/Index';
+import IndexHomeAdmin from 'pages/homeAdmin/Index';
 import  'styles/globals.css';
 import 'styles/tabla.css';
 import "styles/homeStyles.css";
@@ -75,14 +75,13 @@ function App() {
         <UserContext.Provider value={{userData, setUserData}}>
           <BrowserRouter>
             <Routes>
+              <Route path='/' element={<LayoutUsers/>}/>
+              <Route path='registro' element={<RegistrarUsuario/>}/>
+              <Route path='login'element={<IniciarSesion/>}/>
               <Route path="/" element={<LayoutAdmin/>}>
-                <Route path='' element={<Index/>}/>
-                <Route path="/usuarios" element={<IndexUsuarios/>}/>  
-                <Route path="/avances" element={<IndexAvances/>}/>
-              </Route>
-              <Route path='/nafc' element={<LayoutUsers/>}>
-                <Route path='registro' element={<RegistrarUsuario/>}/>
-                <Route path='login'element={<IniciarSesion/>}/>
+                <Route path='/nafc' element={<IndexHomeAdmin/>}/>
+                <Route path="/nafc/usuarios" element={<IndexUsuarios/>}/>
+                <Route path="/nafc/avances" element={<IndexAvances/>}/>
               </Route>
             </Routes>
           </BrowserRouter>

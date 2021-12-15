@@ -27,7 +27,7 @@ const IniciarSesion = () => {
         if(dataMutation){
             if(dataMutation.login.token){
                 setToken(dataMutation.login.token);
-                navigate('/');
+                navigate('/nafc');
             }
         }
     },[dataMutation,setToken,navigate]);
@@ -45,7 +45,7 @@ const IniciarSesion = () => {
                 />
             </form>
             <span>¿No tienes una cuenta?</span>
-            <Link to='/auth/registro'>
+            <Link to='/registro'>
                 <span className='text-blue-900'>Regístrate</span>
             </Link>
         </div>
