@@ -2,7 +2,7 @@ import ButtonLoading from 'components/Button';
 import DropDown from 'components/Dropdown';
 import Input from 'components/Input';
 import React, {useEffect} from 'react'
-import { Enum_rol } from 'utils/enums';
+import { Enum_Rol } from 'utils/enums';
 import useFormData from 'hooks/useFormData';
 import {Link} from 'react-router-dom';
 import {useMutation} from '@apollo/client';
@@ -38,13 +38,16 @@ const RegistrarUsuario = () => {
 
     return (
         <div className='flex flex-col h-full w-full items-center justify-center'>
+            <Link to='/usuarios'>
+                <i className='fas fa-arrow-left text-gray-600 cursor-pointer font-bold text-xl hover:text-gray-900' />
+            </Link>
             <h1 className='text-3xl font-bold my-4'>Registro</h1>
             <form className='flex flex-col' onSubmit={submitForm} onChange={updateFormData} ref={form}>
                 <div className='grid grid-cols-2 gap-5'>
                     <Input label='Nombre' name='nombre' type='text' required/>
                     <Input label='Correo' name='correo' type='email' required/>
                     <Input label='Documento' name='identificacion' type='text' required/>
-                    <DropDown label='Rol' name='rol' required={true} options={Enum_rol}/>
+                    <DropDown label='Rol' name='rol' required={true} options={Enum_Rol}/>
                     <Input label='Contraseña' name='password' type='password' required/>
                 </div>
                 <ButtonLoading 

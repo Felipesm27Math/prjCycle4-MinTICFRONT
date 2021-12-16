@@ -45,7 +45,7 @@ const Logout = () => {
     };
     return (
       <li onClick={() => deleteToken()} className="logout flex items-center justify-center">
-        <NavLink to='/login' className=' text-2xl text-white hover:text-pink-300 hover:text-4xl'>
+        <NavLink to='/' className=' text-2xl text-white hover:text-pink-300 hover:text-4xl'>
           <div className='flex items-center'>
             <i className='fas fa-sign-out-alt' />
             <span className='text-sm ml-2'>Cerrar Sesión</span>

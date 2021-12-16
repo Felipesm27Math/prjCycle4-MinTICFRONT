@@ -1,11 +1,13 @@
 import React from 'react';
 
-const IndexHomeAdmin = () => {
+
+const IndexHome = () => {
+    
     return (
         <div>
-            Hello, in this page you can find all the information about Inscr.
+            HOla
         </div>
-    )
-}
+    );
+};
 
-export default IndexHomeAdmin;
+export default IndexHome;

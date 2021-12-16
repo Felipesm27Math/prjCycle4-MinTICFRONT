@@ -12,7 +12,7 @@ import IniciarSesion from 'pages/auth/login';
 import { AuthContext } from 'context/authContext';
 import jwt_decode from "jwt-decode";
 import IndexInscripciones from 'pages/inscripciones/Index';
-import IndexHomeAdmin from 'pages/homeAdmin/Index';
+import IndexHome from 'pages/homeAdmin/Index';
 import  'styles/globals.css';
 import 'styles/tabla.css';
 import "styles/homeStyles.css";
@@ -79,11 +79,14 @@ function App() {
               <Route path='registro' element={<RegistrarUsuario/>}/>
               <Route path='login'element={<IniciarSesion/>}/>
               <Route path="/" element={<LayoutAdmin/>}>
-                <Route path='/nafc' element={<IndexHomeAdmin/>}/>
+                <Route path='/nafc' element={<IndexHome/>}/>
                 <Route path="/nafc/usuarios" element={<IndexUsuarios/>}/>
                 <Route path="/nafc/avances" element={<IndexAvances/>}/>
               </Route>
             </Routes>
+            {/* <Route path='/admin' >
+              <Route/>
+            </Route> */}
           </BrowserRouter>
         </UserContext.Provider>  
       </AuthContext.Provider>
