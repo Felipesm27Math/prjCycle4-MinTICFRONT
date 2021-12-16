@@ -15,6 +15,10 @@ import jwt_decode from "jwt-decode";
 import IndexInscripciones from 'pages/inscripciones/Index';
 import IndexHome from 'pages/homeAdmin/Index';
 import RegistrarUsuario from 'pages/auth/registro';
+import EditarUsuario from 'pages/usuarios/editar';
+import EditarProyecto from 'pages/proyectos/editarProyecto';
+import EditarInscripcion from 'pages/inscripciones/editar';
+
 
 
 import  'styles/globals.css';
@@ -82,12 +86,17 @@ function App() {
               <Route path='/' element={<LayoutUsers/>}/>
               <Route path='registro' element={<RegistrarUsuario/>}/>
               <Route path='login'element={<IniciarSesion/>}/>
-              <Route path="/nafc" element={<LayoutAdmin/>}>
+              <Route path='/nafc' element={<LayoutAdmin/>}>
                 <Route path='/nafc/home' element={<IndexHome/>}/>
-                <Route path="/nafc/usuarios" element={<IndexUsuarios/>}/>
-                <Route path="/nafc/avances" element={<IndexAvances/>}/>
+                <Route path='/nafc/usuarios' element={<IndexUsuarios/>}/>
+                <Route path='/nafc/usuarios/editar/:_id' element={<EditarUsuario/>}/>
                 <Route path='/nafc/proyectos'element={<IndexProyecto/>}/>
                 <Route path='/nafc/proyectos/crear'element={<CrearProyecto/>}/>
+                <Route path='/nafc/proyectos/editar/:_id'element={<EditarProyecto/>}/>
+                <Route path='/nafc/inscripciones'element={<IndexInscripciones/>}/>
+                <Route path='/nafc/inscripciones/editar/:_id'element={<EditarInscripcion/>}/>
+                <Route path='/nafc/avances' element={<IndexAvances/>}/>
+                <Route path='/nafc/avances/editar' element={null}/>
               </Route>
             </Routes>
           </BrowserRouter>

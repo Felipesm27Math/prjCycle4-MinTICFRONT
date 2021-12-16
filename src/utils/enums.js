@@ -19,11 +19,18 @@ const Enum_Rol = {
     GENERAL: 'General',
     ESPECIFICO: 'Específico',
   };
+
   const Enum_FaseProyecto = {
     INICIADO: 'Iniciado',
     DESARROLLO: 'Tesarrollo',
     TERMINADO:'Terminado',
     NULO:'Nulo'
   };
+
+  const Enum_Inscripcion = {
+    ACEPTADA:'Aceptada',
+    RECHAZADA:'Rechazada',
+    EN_ESPERA:'En espera'
+  };
   
-  export { Enum_Rol, Enum_EstadoUsuario, Enum_EstadoProyecto, Enum_TipoObjetivo, Enum_FaseProyecto };
+  export { Enum_Rol, Enum_EstadoUsuario, Enum_EstadoProyecto, Enum_TipoObjetivo, Enum_FaseProyecto, Enum_Inscripcion};

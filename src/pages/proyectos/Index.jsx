@@ -1,28 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import {useQuery, useMutation} from '@apollo/client';
 import { PROYECTOS } from 'graphql/proyectos/queries';
-import { CREAR_INSCRIPCION } from 'graphql/inscripciones.js/mutations';
-import { Link } from 'react-router-dom';
+import { CREAR_INSCRIPCION } from 'graphql/inscripciones/mutations';
+import { useParams,Link } from 'react-router-dom';
 import PrivateComponent from 'components/PrivateComponent';
 import { useUser } from 'context/userContext';
 import { toast } from 'react-toastify';
 import ButtonLoading from 'components/ButtonLoading';
 import { GET_UNUSUARIO } from 'graphql/usuarios/queries';
-import { Enum_FaseProyecto } from 'utils/enums';
+import { Enum_FaseProyecto, Enum_EstadoProyecto} from 'utils/enums';
+import useFormData from 'hooks/useFormData';
+import { EDITAR_PROYECTO } from 'graphql/proyectos/mutations';
+import DropDown from 'components/Dropdown';
 
 
 
 
 
 const IndexProyecto = () => {
-    const { data, loading, error} = useQuery(PROYECTOS);
-    const { data: dataC, loading:loadingC, error:errorC} = useQuery(GET_UNUSUARIO);
+    const { _id } = useParams();
+    const { data:queryData, loading:queryLoading, error:queryError } = useQuery(PROYECTOS);
+    const { data: dataC, loading:loadingC, error:errorC} = useQuery(GET_UNUSUARIO,{
+        variables: { _id },
+    });
     
 
     useEffect(() => {
-        console.log('datos proyecto', data);
-    }, [data]);
-    if (loading && loadingC) return <div>Cargando...</div>
+        console.log('datos proyecto', queryData);
+    }, [queryData]);
+    if (queryLoading && loadingC) return <div>Cargando...</div>
 
 
     
@@ -55,11 +61,11 @@ const IndexProyecto = () => {
                 <table className='tabla'> 
                     <thead>
                         <tr>
-                            <th>Id Proyecto</th>
+                            {/* <th>Id Proyecto</th> */}
                             <th>Nombre</th>
                             <th>Presupuesto</th>
-                            <th>Fecha de Inicio</th>
-                            <th>Fecha Final</th>
+                            {/* <th>Fecha de Inicio</th>
+                            <th>Fecha Final</th> */}
                             <th>Objetivos</th>
                             <th>Estado</th>
                             <th>Fase</th>
@@ -78,38 +84,40 @@ const IndexProyecto = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {data && data.Proyectos.map((proyecto)=>{
+                        {queryData && queryData.Proyectos.map((proyecto)=>{
                             return(
                                 <tr key={proyecto._id}>
-                                    <td>{proyecto._id}</td>
+                                    {/* <td>{proyecto._id}</td> */}
                                     <td>{proyecto.nombre}</td>
                                     <td>{proyecto.presupuesto}</td>
-                                    <td>{proyecto.fechaInicio}</td>
-                                    <td>{proyecto.fechaFin}</td>
+                                    {/* <td>{proyecto.fechaInicio}</td>
+                                    <td>{proyecto.fechaFin}</td> */}
                                     <td> {proyecto.objetivos.map((objetivo) => {
                                             return <Obj tipo={objetivo.tipo} descripcion={objetivo.descripcion} />;
                                             })}</td>
                                     <td>{proyecto.estado}</td>
                                     <td>{Enum_FaseProyecto[proyecto.fase]}</td>
-                                    <td>{dataC && dataC.UsuarioFiltro.map((c)=>{
-                                                return(
-                                                    <tr key={c._id}>
-                                                        <td>{c.nombre}</td>                               
-                                                        <td>{c.identificacion}</td>
-                                                        
-                                                    </tr>
-                                                );
-                                            })}</td>
-                                    
+                                    <td>
+                                        <ol>
+                                            <li>Lider: {proyecto.lider.nombre}</li>
+                                            <li>Identificacion: {proyecto.lider.identificacion}</li> 
+                                        </ol>
                         
+                                    </td>
+                                    <td>
+                                        <Link to={`/nafc/proyectos/editar/${proyecto._id}`}>
+                                            {<button className='bg-indigo-500 text-gray-50 p-2 rounded-lg shadow-lg hover:bg-indigo-400'>Editar
+                                            </button>}
+                                        </Link>
+                                    </td>
                                     
-                                    <td>{<button className='bg-indigo-500 text-gray-50 p-2 rounded-lg shadow-lg hover:bg-indigo-400'>Editar</button>}</td>
                                     
-                                    
-                                        <td>{<InscripcionProyecto 
+                                        {/* <td>
+                                            {<InscripcionProyecto 
                                             idProyecto={proyecto._id}
                                             estado={proyecto.estado}
-                                            inscripciones={proyecto.inscripciones}/>}</td>
+                                            inscripciones={proyecto.inscripciones}/>}
+                                        </td> */}
                                     
                                     
                                 </tr>
@@ -123,7 +131,7 @@ const IndexProyecto = () => {
     const Obj = ({ tipo, descripcion }) => {
             return (
             <div>
-                <div className='text-lg font-bold'>{tipo}</div>
+                <div className=' text-xl font-bold'>{tipo}</div>
                 <div>{descripcion}</div>
                 <PrivateComponent roleList = {['LIDER']}>
                 <div >
@@ -183,6 +191,10 @@ const IndexProyecto = () => {
                     )}
                 </>
                 );
-            };            
+            };     
+            
+            
+            
+              
         
 export default IndexProyecto;
