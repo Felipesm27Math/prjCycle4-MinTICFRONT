@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import {useQuery} from '@apollo/client';
 import { GET_USUARIOS } from 'graphql/usuarios/queries';
+import { toast } from 'react-toastify';
 
 const IndexUsuarios = () => {
     const {data,error,loading} = useQuery(GET_USUARIOS)
@@ -9,11 +10,16 @@ const IndexUsuarios = () => {
         console.log('data server',data);
     },[data]);
 
+    useEffect(() =>{
+        if(error){
+            toast.error("Error al consultar usuarios");
+        }
+    },[error]);
+
     if (loading) return <div>Cargando...</div>
 
     return (
-        <div>
-            Datos Usuarios:
+        <div> 
             <table className="tabla">
                 <thead>
                     <tr>
@@ -39,7 +45,7 @@ const IndexUsuarios = () => {
                 </tbody>
             </table>
         </div>
-    )
-}
+    );
+};
 
 export default IndexUsuarios

@@ -6,9 +6,8 @@ query Proyectos {
     _id
     nombre
     presupuesto
-   
-    
     estado
+    fase
     objetivos {
       tipo
       descripcion

@@ -1,8 +1,9 @@
 .tabla {
-    width: 100%;
-    margin: 10px;
+    width:90%;
+    margin: 10px auto;
     overflow-y: scroll;
-  }
+    
+}
   
   .tabla td,
   .tabla th {
@@ -11,7 +12,7 @@
   }
   
   .tabla th {
-    background-color: #738da3;
+    background-color: black;
     color: white;
     padding-top: 12px;
     padding-bottom: 12px;

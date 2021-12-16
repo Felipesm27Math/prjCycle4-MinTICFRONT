@@ -1,3 +1,4 @@
+
 import {gql} from '@apollo/client';
 
 const GET_USUARIOS = gql `
@@ -35,3 +36,4 @@ query Avances {
 `;
 
 export {GET_USUARIOS, GET_AVANCES, GET_UNUSUARIO}
+
