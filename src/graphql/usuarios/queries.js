@@ -13,6 +13,16 @@ query Usuarios {
 }
 `;
 
+const GET_UNUSUARIO = gql`
+query UsuarioFiltro($id: String!) {
+  UsuarioFiltro(_id: $id) {
+    identificacion
+    nombre
+  }
+}
+
+`;
+
 const GET_AVANCES = gql `
 query Avances {
   Avances {
@@ -24,4 +34,4 @@ query Avances {
 }
 `;
 
-export {GET_USUARIOS, GET_AVANCES}
+export {GET_USUARIOS, GET_AVANCES, GET_UNUSUARIO}

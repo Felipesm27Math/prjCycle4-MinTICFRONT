@@ -1,22 +1,19 @@
-import React from 'react';
-import {Outlet} from 'react-router-dom';
+import Navbar from "components/Navbar";
+import { Outlet } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
-const LayoutAdmin = () => {
-    return (
-        <div>
-            <nav className="fixed w-full h-12 bg-gray-600 text-gray-100 flex flex-row justify-between items-center">
-                <div className="brand-logo text-base font-bold px-3">NAFC</div>
-                <ul className="menu-list flex flex-row">
-                    <li className="menu-list-item px-2 text-lg">Home</li>
-                    <li className="menu-list-item px-2 text-lg">Usuarios</li>
-                    <li className="menu-list-item px-2 text-lg">Proyectos</li>
-                    <li className="menu-list-item px-2 text-lg">Inscripciones</li>
-                    <li className="menu-list-item px-2 text-lg">Avances</li>
-                </ul>
-            </nav>
+const PrivateLayout = () => {
+return (
+    <div className='flex flex-col md:flex-row flex-no-wrap h-screen'>
+      <div className='flex w-full h-full'>
+        <div className='w-full h-full  overflow-y-scroll'>
+            <Navbar />
             <Outlet/>
         </div>
-    )
-}
+      </div>
+      <ToastContainer />
+    </div>
+  );
+};
 
-export default LayoutAdmin
+export default PrivateLayout;

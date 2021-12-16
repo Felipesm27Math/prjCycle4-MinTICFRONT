@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import {useQuery} from '@apollo/client';
-import { GET_AVANCES } from 'graphql/usuarios/queries';
+import { GET_AVANCES } from 'graphql/avances/queries';
 
 const IndexAvances = () => {
     const {data,error,loading} = useQuery(GET_AVANCES)
@@ -12,7 +12,6 @@ const IndexAvances = () => {
     if (loading) return <div>Cargando...</div>
     return (
         <div>
-            Avances:
             <table className="tabla">
                 <thead>
                     <tr>
@@ -40,3 +39,4 @@ const IndexAvances = () => {
 }
 
 export default IndexAvances
+
