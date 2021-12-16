@@ -7,12 +7,16 @@ import LayoutAdmin from 'layouts/LayoutAdmin';
 import LayoutUsers from 'layouts/LayoutUsers';
 import IndexUsuarios from "pages/usuarios/Index";
 import IndexAvances from 'pages/avances/Index';
-import RegistrarUsuario from 'pages/auth/registro';
+import IndexProyecto from 'pages/proyectos/Index';
+import CrearProyecto from 'pages/proyectos/CrearProyecto';
 import IniciarSesion from 'pages/auth/login';
 import { AuthContext } from 'context/authContext';
 import jwt_decode from "jwt-decode";
 import IndexInscripciones from 'pages/inscripciones/Index';
 import IndexHome from 'pages/homeAdmin/Index';
+import RegistrarUsuario from 'pages/auth/registro';
+
+
 import  'styles/globals.css';
 import 'styles/tabla.css';
 import "styles/homeStyles.css";
@@ -73,15 +77,17 @@ function App() {
     <ApolloProvider client={client}>
       <AuthContext.Provider value={{authToken,setAuthToken,setToken}}>
         <UserContext.Provider value={{userData, setUserData}}>
-          <BrowserRouter>
-            <Routes>
+        <BrowserRouter>
+          <Routes>
               <Route path='/' element={<LayoutUsers/>}/>
               <Route path='registro' element={<RegistrarUsuario/>}/>
               <Route path='login'element={<IniciarSesion/>}/>
-              <Route path="/" element={<LayoutAdmin/>}>
-                <Route path='/nafc' element={<IndexHome/>}/>
+              <Route path="/nafc" element={<LayoutAdmin/>}>
+                <Route path='/nafc/home' element={<IndexHome/>}/>
                 <Route path="/nafc/usuarios" element={<IndexUsuarios/>}/>
                 <Route path="/nafc/avances" element={<IndexAvances/>}/>
+                <Route path='/nafc/proyectos'element={<IndexProyecto/>}/>
+                <Route path='/nafc/proyectos/crear'element={<CrearProyecto/>}/>
               </Route>
             </Routes>
           </BrowserRouter>
