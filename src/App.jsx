@@ -84,9 +84,6 @@ function App() {
                 <Route path="/nafc/avances" element={<IndexAvances/>}/>
               </Route>
             </Routes>
-            {/* <Route path='/admin' >
-              <Route/>
-            </Route> */}
           </BrowserRouter>
         </UserContext.Provider>  
       </AuthContext.Provider>
