@@ -12,17 +12,43 @@ import PrivateRoute from 'components/PrivateRoute';
 import { nanoid } from 'nanoid';
 import { useObj } from 'context/objContext';
 import { ObjContext } from 'context/objContext';
+import { PROYECTOS } from 'graphql/proyectos/queries';
+import { EDITAR_PROYECTO } from 'graphql/proyectos/mutations';
 
-const EditarProyecto = () => {
+const EditarProyecto = ({_id}) => {
 
-  const { _id } = useParams();
+    const { form, formData, updateFormData } = useFormData();
 
-  const {data,loading,error} = useQuery(UN_PROYECTO,{
-    variables:{ _id },
-  });
+    const [editarProyecto, { data: dataMutation, loading }] = useMutation(
+        EDITAR_PROYECTO
+       
+      );
+     
+    useEffect(() => {
+        if (dataMutation) {
+           toast.success('Proyecto editado con exito');
+           
+        }
+      }, [dataMutation]);  
+    
+      const submitForm = (e) => {
+        e.preventDefault();
+        editarProyecto({
+          variables: {
+            _id,
+            
+            campos: formData,
+          },
+        }).catch((error) => {
+          toast.error('Error editando el proyecto', error);
+        });
+      };
 
   if (loading) return <div>Cargando....</div>;
-  console.log(data);
+  console.log(dataMutation);
+
+
+  {dataMutation&&dataMutation.Proyectos.map((proyecto)=>{
     return (
         <div>
             <div className='flew flex-col w-full h-full items-center justify-center p-10'>
@@ -33,27 +59,45 @@ const EditarProyecto = () => {
                 Editar Proyecto
             </h1>
                 <form
-                    // onSubmit={submitForm}
-                    // onChange={updateFormData}
-                    // ref={form}
+                    onSubmit={submitForm}
+                    onChange={updateFormData}
+                    ref={form}
                     className='flex flex-col items-center justify-center'
                 >
+                    
                     <Input
                     label='Nombre Proyecto:'
                     type='text'
                     name='nombre'
-                    defaultValue={data.ProyectoLider.nombre}
+                    defaultValue={proyecto.nombre}
                     required
-                    />        
+                    />
                     <Input
                     label='Presupuesto'
                     type='text'
                     name='presupuesto'
-                    defaultValue={data.ProyectoLider.presupuesto}
+                    defaultValue={proyecto.presupuesto}
                     required
+                    />        
+                    
+                    <DropDown 
+                    label='Estado del proyecto'
+                    name='estado'
+                    defaultValue={proyecto.estado}
+                    options={Enum_EstadoProyecto}
+                    />
+                    
+                    <DropDown 
+                    label='Fase del proyecto'
+                    name='fase'
+                    defaultValue={proyecto.fase}
+                    options={Enum_FaseProyecto}  
                     />  
+                    
+                    
 
                     <ButtonLoading
+                    onClick={() => editarProyecto ()}
                     disabled={false}
                     loading={loading}
                     text='Editar'
@@ -62,6 +106,12 @@ const EditarProyecto = () => {
             </div>
         </div>
     );
+
+  })}
+
+    
+  
+ 
 };
 
 

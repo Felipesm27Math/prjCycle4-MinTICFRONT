@@ -15,7 +15,15 @@ import { Enum_TipoObjetivo } from 'utils/enums';
 
 const CrearProyecto = () => {
     const { form, formData, updateFormData } = useFormData();
-   
+    const [listaUsuarios, setListaUsuarios] = useState({});
+
+  // falta captura del error del query
+  const { data, loading } = useQuery(GET_USUARIOS, {
+    variables: {
+      filtro: { rol: 'LIDER', estado: 'AUTORIZADO' },
+    },
+  });
+
 
     const [crearProyecto, { data: mutationData, loading: mutationLoading, error: mutationError }] =
     useMutation(CREAR_PROYECTO);
@@ -24,6 +32,17 @@ const CrearProyecto = () => {
     useEffect(() => {
         console.log('data mutation', mutationData);
         });
+    
+        useEffect(() => {
+            if (data) {
+              const lu = {};
+              data.Usuarios.forEach((elemento) => {
+                lu[elemento._id] = elemento.nombre;
+              });
+        
+              setListaUsuarios(lu);
+            }
+          }, [data]);
         
         const submitForm = (e) => {
             e.preventDefault();
@@ -48,7 +67,8 @@ const CrearProyecto = () => {
             <form ref={form} onChange={updateFormData} onSubmit={submitForm}>
                 <Input name ='nombre' label='Nombre del Proyecto' required= {true} type= 'text' />
                 <Input name ='presupuesto' label='Presupuesto' required= {true} type= 'number' />
-                <Input name ='lider' label='Id del Lider del Proyecto' required= {true} type= 'text' />
+                <DropDown label='Líder' options={listaUsuarios} name='lider' required />
+                
                 <Objetivos />
                 <ButtonLoading text='Crear Proyecto' loading={false} disabled={false} />
             </form>

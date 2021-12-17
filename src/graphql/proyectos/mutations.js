@@ -1,28 +1,16 @@
 import { gql } from "@apollo/client";
 
 const EDITAR_PROYECTO = gql`
-  mutation Mutation(
-    $id: String!
-    $nombre: String
-    $presupuesto: Float
-    $objetivos: [crearObjetivo]
-  ) {
-    editarProyectoLider(
-      _id: $id
-      nombre: $nombre
-      presupuesto: $presupuesto
-      objetivos: $objetivos
-    ) {
-      _id
-      nombre
-      presupuesto
-      objetivos {
-        tipo
-        descripcion
-      }
-      presupuesto
-    }
+mutation EditarProyecto($id: String!, $nombre: String, $presupuesto: Float, $estado: Enum_EstadoProyecto, $fase: Enum_FaseProyecto) {
+  editarProyecto(_id: $id, nombre: $nombre, presupuesto: $presupuesto,estado: $estado, fase: $fase) {
+    _id
+    nombre
+    presupuesto
+    estado
+    fase
+    
   }
+}
 `;
 
 const CREAR_PROYECTO = gql`

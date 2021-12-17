@@ -12,6 +12,8 @@ import { Enum_FaseProyecto, Enum_EstadoProyecto} from 'utils/enums';
 import useFormData from 'hooks/useFormData';
 import { EDITAR_PROYECTO } from 'graphql/proyectos/mutations';
 import DropDown from 'components/Dropdown';
+import {Dialog} from '@mui/material';
+import Input from 'components/Input';
 
 
 
@@ -28,9 +30,12 @@ const IndexProyecto = () => {
     useEffect(() => {
         console.log('datos proyecto', queryData);
     }, [queryData]);
+
+    const [showDialog, setShowDialog] = useState(false); 
     if (queryLoading && loadingC) return <div>Cargando...</div>
 
-
+    
+    
     
         return (
             
@@ -57,7 +62,7 @@ const IndexProyecto = () => {
                 
 
             
-                    
+                  
                 <table className='tabla'> 
                     <thead>
                         <tr>
@@ -110,6 +115,24 @@ const IndexProyecto = () => {
                                             </button>}
                                         </Link>
                                     </td>
+                                    <td> 
+                                        
+                                            <button type='button'
+                                                    onClick={() => {
+                                                        setShowDialog(true);}}
+                                                    >
+                                                    <i className='mx-4 fas fa-pen text-yellow-600 hover:text-yellow-400' />
+                                                    </button>
+
+                                                    <Dialog
+                                                            open={showDialog}
+                                                            onClose={() => {
+                                                            setShowDialog(false);
+                                                            }}
+                                                        >
+                                                            <FormEditProyecto _id={proyecto._id} /></Dialog>         
+                                           
+                                    </td>
                                     
                                     
                                         {/* <td>
@@ -122,9 +145,13 @@ const IndexProyecto = () => {
                                     
                                 </tr>
                             );
+                            
                         })}
-                    </tbody>    
-                </table>   
+                    </tbody> 
+                      
+                </table>  
+                
+                                            
             </div>
         )
     };
@@ -142,15 +169,49 @@ const IndexProyecto = () => {
             );
         };
     
-        const Lider = ({ nombre, identificacion }) => {
+        const FormEditProyecto = ({ _id }) => {
+            const { form, formData, updateFormData } = useFormData();
+            const [editarProyecto, {data, loading }] = useMutation(EDITAR_PROYECTO);
+          
+            const submitForm = (e) => {
+              e.preventDefault();
+              editarProyecto({
+                variables: {
+                  _id,
+                  nombre: formData,
+                  presupuesto: formData,
+                  estado: formData,
+                  fase: formData,
+                },
+              }).catch((error) => {
+                toast.error('Error cambiando el estado', error);
+              });
+            };
+            useEffect(() => {
+                if (data) {
+                  toast.success('Estado cambiado con exito');
+                }
+              }, [data]);
             return (
-            <div>
-                <div className='text-lg font-bold'>{nombre}</div>
-                <div>{identificacion}</div>
-                
-            </div>
+              <div className='p-4'>
+                <h1 className='font-bold'>Modificar Estado del Proyecto</h1>
+                <form
+                  ref={form}
+                  onChange={updateFormData}
+                  onSubmit={submitForm}
+                  className='flex flex-col items-center'
+                >
+                <Input name ='nombre' label='Nombre del Proyecto' required= {true} type= 'text' />
+                  {/* <DropDown
+                    label='Estado del Proyecto'
+                    name='estado'
+                    options={Enum_EstadoProyecto}
+                  /> */}
+                  <ButtonLoading disabled={false} loading={loading} text='Confirmar' />
+                </form>
+              </div>
             );
-        };
+          };
             
         const InscripcionProyecto = ({ idProyecto, estado, inscripciones }) => {
             const [estadoInscripcion, setEstadoInscripcion] = useState('');
