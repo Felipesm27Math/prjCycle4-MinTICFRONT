@@ -26,3 +26,11 @@
   .tabla tr:hover {
     background-color: #ddd;
   }
+
+
+  @media screen and (max-width: 780px) {
+    .tabla{
+      display: block;
+      position: relative;
+    }
+  }
