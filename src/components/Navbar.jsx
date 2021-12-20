@@ -13,7 +13,7 @@ const Navbar = () => {
         <nav className="navbar">
                     <div className="logo"><Link to='/nafc'>NAFC</Link></div>
                 <ul className={Menu?"nav-menu":"nav-uno"} onClick={()=>{setMenu(false)}}>
-                    <Link to='/nafc' className="home">
+                    <Link to='/nafc/home' className="home">
                         <li>Home</li>
                     </Link>
                     <Link to='/nafc/usuarios' className="user">
