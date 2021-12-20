@@ -1,9 +1,10 @@
 import React from 'react';
+import Presentacion from '/components/Presentacion';
 
 const Index = () => {
     return (
         <div>
-            Home
+            HOME
         </div>
     )
 }
