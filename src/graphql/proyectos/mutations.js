@@ -2,13 +2,13 @@ import { gql } from "@apollo/client";
 
 const EDITAR_PROYECTO = gql`
   mutation Mutation(
-    $id: String!
+    $_id: String!
     $nombre: String
     $presupuesto: Float
     $objetivos: [crearObjetivo]
   ) {
     editarProyectoLider(
-      _id: $id
+      _id: $_id
       nombre: $nombre
       presupuesto: $presupuesto
       objetivos: $objetivos

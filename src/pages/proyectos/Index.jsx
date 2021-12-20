@@ -33,7 +33,6 @@ const IndexProyecto = () => {
 
     
         return (
-            
             <div className='p-10 '>
                 <div className= 'w-full items-center justify-center flex flex-col'>
                 <h1 className= ' mt-7 text-gray-700 justify-center text-3xl pb-5 font-bold'>Listado de Proyectos </h1>
@@ -49,18 +48,15 @@ const IndexProyecto = () => {
                     <button className='bg-gray-700 text-gray-50 p-2 rounded-lg shadow-lg '>Nuevo Proyecto</button>
                 </Link>
                 </div> 
-                
 
-              
-                
-                
+    
                 
 
             
                     
-                <table className='tabla'> 
-                    <thead>
-                        <tr>
+                 <table className='tabla'> 
+                     <thead>
+                         <tr>
                             {/* <th>Id Proyecto</th> */}
                             <th>Nombre</th>
                             <th>Presupuesto</th>
@@ -70,64 +66,54 @@ const IndexProyecto = () => {
                             <th>Estado</th>
                             <th>Fase</th>
                             <th>Lider</th>
+                            <th>Avances</th>
                             
-                            <PrivateComponent roleList = {['LIDER']}>
-                            <th>Acciones</th>  
-                            </PrivateComponent>
-                            <PrivateComponent roleList = {['ESTUDIANTE']}>
-                            <th>Inscripcion</th>
-                            </PrivateComponent>
-                            
-                            
-                        
-                        
+                             <PrivateComponent roleList = {['LIDER']}>
+                             <th>Acciones</th>  
+                             </PrivateComponent>
+                             <PrivateComponent roleList = {['ESTUDIANTE']}>
+                             <th>Inscripcion</th>
+                             </PrivateComponent>
                         </tr>
                     </thead>
                     <tbody>
                         {queryData && queryData.Proyectos.map((proyecto)=>{
                             return(
                                 <tr key={proyecto._id}>
-                                    {/* <td>{proyecto._id}</td> */}
                                     <td>{proyecto.nombre}</td>
                                     <td>{proyecto.presupuesto}</td>
-                                    {/* <td>{proyecto.fechaInicio}</td>
-                                    <td>{proyecto.fechaFin}</td> */}
-                                    <td> {proyecto.objetivos.map((objetivo) => {
+                                    <td>
+                                    {proyecto.objetivos.map((objetivo) => {
                                             return <Obj tipo={objetivo.tipo} descripcion={objetivo.descripcion} />;
-                                            })}</td>
-                                    <td>{proyecto.estado}</td>
+                                            })}
+                                    </td>
+                                    <td>{Enum_EstadoProyecto[proyecto.estado]}</td>
                                     <td>{Enum_FaseProyecto[proyecto.fase]}</td>
                                     <td>
                                         <ol>
                                             <li>Lider: {proyecto.lider.nombre}</li>
                                             <li>Identificacion: {proyecto.lider.identificacion}</li> 
                                         </ol>
-                        
                                     </td>
                                     <td>
-                                        <Link to={`/nafc/proyectos/editar/${proyecto._id}`}>
+                                    <Link to='/nafc/avances'>
+                                            {<button className='bg-indigo-500 text-gray-50 p-2 rounded-lg shadow-lg hover:bg-indigo-400'>Avances
+                                            </button>}
+                                        </Link> 
+                                    </td>
+                                    <td>
+                                        <Link to={`/nafc/proyectos/editar/${proyecto.avances._id}`}>
                                             {<button className='bg-indigo-500 text-gray-50 p-2 rounded-lg shadow-lg hover:bg-indigo-400'>Editar
                                             </button>}
-                                        </Link>
+                                        </Link>  
                                     </td>
-                                    
-                                    
-                                        {/* <td>
-                                            {<InscripcionProyecto 
-                                            idProyecto={proyecto._id}
-                                            estado={proyecto.estado}
-                                            inscripciones={proyecto.inscripciones}/>}
-                                        </td> */}
-                                    
-                                    
                                 </tr>
                             );
                         })}
                     </tbody>    
                 </table>   
-            </div>
-        )
-    };
+             </div>
+        )};
     const Obj = ({ tipo, descripcion }) => {
             return (
             <div>
@@ -142,56 +128,56 @@ const IndexProyecto = () => {
             );
         };
     
-        const Lider = ({ nombre, identificacion }) => {
-            return (
-            <div>
-                <div className='text-lg font-bold'>{nombre}</div>
-                <div>{identificacion}</div>
+        // const Lider = ({ nombre, identificacion }) => {
+        //     return (
+        //     <div>
+        //         <div className='text-lg font-bold'>{nombre}</div>
+        //         <div>{identificacion}</div>
                 
-            </div>
-            );
-        };
+        //     </div>
+        //     );
+        // };
             
-        const InscripcionProyecto = ({ idProyecto, estado, inscripciones }) => {
-            const [estadoInscripcion, setEstadoInscripcion] = useState('');
-            const [crearInscripcion, { data, loading, error }] = useMutation(CREAR_INSCRIPCION);
-            const { userData } = useUser();
+        // const InscripcionProyecto = ({ idProyecto, estado, inscripciones }) => {
+        //     const [estadoInscripcion, setEstadoInscripcion] = useState('');
+        //     const [crearInscripcion, { data, loading, error }] = useMutation(CREAR_INSCRIPCION);
+        //     const { userData } = useUser();
             
-                useEffect(() => {
-                if (userData && inscripciones) {
-                    const flt = inscripciones.filter((el) => el.estudiante._id === userData._id);
-                    if (flt.length > 0) {
-                    setEstadoInscripcion(flt[0].estado);
-                    }
-                }
-                }, [userData, inscripciones]);
+        //         useEffect(() => {
+        //         if (userData && inscripciones) {
+        //             const flt = inscripciones.filter((el) => el.estudiante._id === userData._id);
+        //             if (flt.length > 0) {
+        //             setEstadoInscripcion(flt[0].estado);
+        //             }
+        //         }
+        //         }, [userData, inscripciones]);
             
-                useEffect(() => {
-                if (data) {
-                    console.log(data);
-                    toast.success('inscripcion creada con exito');
-                }
-                }, [data]);
+        //         useEffect(() => {
+        //         if (data) {
+        //             console.log(data);
+        //             toast.success('inscripcion creada con exito');
+        //         }
+        //         }, [data]);
             
-                const confirmarInscripcion = () => {
-                crearInscripcion({ variables: { proyecto: idProyecto, estudiante: userData._id } });
-                };
+        //         const confirmarInscripcion = () => {
+        //         crearInscripcion({ variables: { proyecto: idProyecto, estudiante: userData._id } });
+        //         };
             
-                return (
-                <>
-                    {estadoInscripcion !== '' ? (
-                    <span>Ya estas inscrito en este proyecto y el estado es {estadoInscripcion}</span>
-                    ) : (
-                    <ButtonLoading
-                        onClick={() => confirmarInscripcion()}
-                        disabled={estado === 'INACTIVO'}
-                        loading={loading}
-                        text='Inscribirme'
-                    />
-                    )}
-                </>
-                );
-            };     
+        //         return (
+        //         <>
+        //             {estadoInscripcion !== '' ? (
+        //             <span>Ya estas inscrito en este proyecto y el estado es {estadoInscripcion}</span>
+        //             ) : (
+        //             <ButtonLoading
+        //                 onClick={() => confirmarInscripcion()}
+        //                 disabled={estado === 'INACTIVO'}
+        //                 loading={loading}
+        //                 text='Inscribirme'
+        //             />
+        //             )}
+        //         </>
+        //         );
+        //     };     
             
             
             

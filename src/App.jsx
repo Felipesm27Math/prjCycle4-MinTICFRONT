@@ -18,6 +18,7 @@ import RegistrarUsuario from 'pages/auth/registro';
 import EditarUsuario from 'pages/usuarios/editar';
 import EditarProyecto from 'pages/proyectos/editarProyecto';
 import EditarInscripcion from 'pages/inscripciones/editar';
+import EditarAvances from 'pages/avances/editar';
 
 
 
@@ -94,9 +95,9 @@ function App() {
                 <Route path='/nafc/proyectos/crear'element={<CrearProyecto/>}/>
                 <Route path='/nafc/proyectos/editar/:_id'element={<EditarProyecto/>}/>
                 <Route path='/nafc/inscripciones'element={<IndexInscripciones/>}/>
-                <Route path='/nafc/inscripciones/editar/:_id'element={<EditarInscripcion/>}/>
+                <Route path='/nafc/inscripcion/editar/:_id'element={<EditarInscripcion/>}/>
                 <Route path='/nafc/avances' element={<IndexAvances/>}/>
-                <Route path='/nafc/avances/editar' element={null}/>
+                <Route path='/nafc/avances/editar/:_id' element={<EditarAvances/>}/>
               </Route>
             </Routes>
           </BrowserRouter>

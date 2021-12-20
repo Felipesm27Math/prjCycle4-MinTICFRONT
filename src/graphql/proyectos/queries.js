@@ -16,6 +16,9 @@ query Proyectos {
       nombre
       identificacion
     }
+    avances {
+      _id
+    }
   }
 }
 

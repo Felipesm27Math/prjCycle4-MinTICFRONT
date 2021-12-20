@@ -27,7 +27,7 @@ const EditarInscripcion = () => {
                 <i className='fas fa-arrow-left text-gray-600 cursor-pointer font-bold text-xl hover:text-gray-900' />
             </Link>
             <h1 className='m-4 text-3xl text-gray-800 font-bold text-center'>
-                Editar Usuario
+                Editar Inscripcion
             </h1>
                 <form
                     // onSubmit={submitForm}
@@ -38,9 +38,16 @@ const EditarInscripcion = () => {
                     <Input
                     label='Nombre de la persona:'
                     type='text'
-                    name='nombre'
+                    name='_id'
+                    defaultValue={data.BuscarInscripcion.estudiante.nombre}
+                    required
+                    />
+                    <DropDown
+                    label='Estado de la persona:'
+                    name='estado'
                     defaultValue={data.BuscarInscripcion.estado}
                     required
+                    options={Enum_Inscripcion}
                     />
                     <ButtonLoading
                     disabled={false}
