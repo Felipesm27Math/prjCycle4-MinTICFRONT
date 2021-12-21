@@ -28,7 +28,7 @@ import "styles/homeStyles.css";
 
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:4000/graphql',
+  uri: 'http://localhost:4000/graphql', 
 });
 
 
