@@ -26,7 +26,7 @@ const EDITAR_PROYECTO = gql`
 `;
 
 const CREAR_PROYECTO = gql`
-  mutation CrearProyecto(
+  mutation CrearProyecto( 
     $nombre: String!
     $presupuesto: Float!
     $lider: String!
