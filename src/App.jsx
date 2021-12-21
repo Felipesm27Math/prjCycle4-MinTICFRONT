@@ -28,7 +28,7 @@ import "styles/homeStyles.css";
 
 
 const httpLink = createHttpLink({
-  uri: 'https://back-nafc-code.herokuapp.com/graphql', 
+  uri: 'http://localhost:4000/graphql', 
 });
 
 
