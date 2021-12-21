@@ -96,7 +96,7 @@ const EditarUsuario = () => {
                     options={Enum_EstadoUsuario}
                     />
                     </PrivateRoute>
-                    <span>Rol del usuario: {dataQuery.rol}</span>
+                    <span>Rol del usuario: {dataQuery.UsuarioFiltro.rol}</span>
                     <ButtonLoading
                     disabled={Object.keys(formData).length===0}
                     loading={loadingMutation}
