@@ -23,8 +23,8 @@ query UsuarioFiltro($_id: String!) {
     nombre
     correo
     identificacion
-    estado
     rol
+    estado
   }
 }
 `;
